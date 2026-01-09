@@ -117,6 +117,7 @@
             id="name"
             name="name"
             placeholder="@name"
+            autocomplete="nickname"
             required
           >
         </div>
@@ -127,6 +128,10 @@
             id="email"
             name="email"
             placeholder="you@example.com"
+            autocomplete="email"
+            inputmode="email"
+            autocapitalize="none"
+            spellcheck="false"
             required
           >
         </div>
@@ -137,6 +142,7 @@
             id="channel"
             name="channel"
             placeholder="https://www.youtube.com/@channel"
+            autocomplete="url"
             required
           >
         </div>
@@ -147,6 +153,7 @@
             name="notes"
             rows="3"
             placeholder="Context, focus, or relevant details"
+            autocomplete="off"
           ></textarea>
         </div>
         <button type="submit">Submit request</button>
