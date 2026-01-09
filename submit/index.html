@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit · Alyxar</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="dark">
+  <link rel="stylesheet" href="/core/tokens.css">
+  <link rel="stylesheet" href="./submit.css">
+</head>
+<body>
+  <main class="submit">
+    <header class="submit-head">
+      <h1>Submit a video link</h1>
+      <p class="who" id="who"></p>
+      <p class="hint">Accepted submissions appear according to system rules.</p>
+    </header>
+    <form class="submit-form" id="form" novalidate>
+      <!-- Token step (ONLY shown if no submit session exists) -->
+      <div class="row" id="token-row" hidden>
+        <label for="token">Submit token</label>
+        <input
+          id="token"
+          type="text"
+          autocomplete="off"
+          placeholder="Paste token once"
+        >
+      </div>
+      <div class="row">
+        <label for="youtube_url">YouTube URL</label>
+        <input
+          id="youtube_url"
+          type="url"
+          placeholder="https://www.youtube.com/watch?v=…"
+          required
+        >
+      </div>
+      <div class="row">
+        <label for="game_tag">Game tag</label>
+        <input
+          id="game_tag"
+          type="text"
+          placeholder="dragonheir"
+          required
+        >
+      </div>
+      <button type="submit">Submit</button>
+      <p class="status" id="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <script src="./submit.js" defer></script>
+</body>
+</html>
