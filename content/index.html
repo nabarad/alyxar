@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creators · Alyxar</title>
+  <meta
+    name="description"
+    content="Creators explains how community videos are submitted, validated, and surfaced on Alyxar as contextual references alongside tools, guides, and discoveries."
+  >
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://alyxar.com/creators/">
+  <meta name="theme-color" content="#0b1418">
+  <meta name="color-scheme" content="dark">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/core/tokens.css">
+  <link rel="stylesheet" href="/pages/creators.css">
+
+  <meta name="alyxar:domain" content="creators">
+  <meta name="alyxar:role" content="system-doc">
+  <meta name="alyxar:terminal" content="true">
+</head>
+
+<body>
+  <div class="layout">
+  <div class="page-center">
+    <main class="page page-creators">
+      <!-- TOP / CENTER -->
+      <header class="creators-header">
+        <h1>Community Video Contributions</h1>
+        <p>
+          Alyxar highlights external videos that add useful context alongside
+          tools, guides, and discoveries.
+        </p>
+      </header>
+      <!-- MIDDLE / TWO-COLUMN SYSTEM -->
+      <section class="creators-grid">
+        <div class="label">Overview</div>
+        <div class="content">
+        <p>
+          Alyxar surfaces selected community videos as contextual references alongside
+          tools and systems. Videos are never hosted on Alyxar. All playback, views,
+          and engagement occur on YouTube, preserving creator ownership and attribution.
+        </p>
+        </div>
+        <div class="label">How submission works</div>
+        <div class="content">
+          <p>
+            Once a creator is approved, they may submit YouTube links at any time.
+            Valid submissions are accepted automatically and become visible according
+            to the system’s normal ordering and retention rules. No further action is
+            required.
+          </p>
+        </div>
+        <div class="label">Submission requirements</div>
+        <div class="content">
+        <ul>
+          <li>Videos must be public and available on YouTube.</li>
+          <li>The video must clearly relate to a supported game or system.</li>
+          <li>The submitting channel must match the approved creator channel.</li>
+        </ul>
+        </div>
+        <div class="label">How videos appear</div>
+        <div class="content">
+        <p>
+          Approved creators manually submit YouTube links for inclusion. Submissions
+          that meet validation rules are accepted automatically, without per-video
+          review. Placement is strictly chronological by submission time, with no
+          ranking, promotion, or algorithmic weighting.
+        </p>
+        </div>
+        <div class="label">Expectations</div>
+        <div class="content">
+        <p>
+          Creator videos are supplemental. They provide perspective, walkthroughs, or
+          interpretations that support Alyxar’s tools and discoveries. Accuracy and
+          clarity matter more than presentation or reach.
+        </p>
+        </div>
+        <div class="label">Future automation</div>
+        <div class="content">
+          <p>
+            If creator demand warrants it, Alyxar may introduce optional automated
+            submissions that reduce or remove the need for manual link entry. Any such
+            changes would operate under the same strict constraints as the current
+            system and remain subject to change as the platform evolves.
+          </p>
+        </div>
+      </section>
+<!-- BOTTOM / CENTER -->
+<footer class="creators-footer">
+  <!-- ACCESS REQUEST (PRIMARY FOOTER CONTENT) -->
+  <section class="creators-access">
+    <div class="label">Access request</div>
+    <div class="content">
+      <p>
+        If your content aligns with Alyxar’s focus, you may request access
+        using the form below.
+      </p>
+      <form class="access-form" method="post" action="/api/creator-request">
+        <div class="form-row">
+          <label for="name">Display name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="@name"
+            required
+          >
+        </div>
+        <div class="form-row">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            required
+          >
+        </div>
+        <div class="form-row">
+          <label for="channel">YouTube channel</label>
+          <input
+            type="url"
+            id="channel"
+            name="channel"
+            placeholder="https://www.youtube.com/@channel"
+            required
+          >
+        </div>
+        <div class="form-row">
+          <label for="notes">Notes (optional)</label>
+          <textarea
+            id="notes"
+            name="notes"
+            rows="3"
+            placeholder="Context, focus, or relevant details"
+          ></textarea>
+        </div>
+        <button type="submit">Submit request</button>
+      </form>
+    </div>
+  </section>
+  <!-- FOOTNOTE / DISCLAIMER -->
+  <p class="creators-note">
+    Requests are reviewed periodically. No response indicates no change
+    at this time.
+  </p>
+</footer>
+    </main>
+  </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-brand">© Alyxar</span> ·
+        </div>
+        <nav class="footer-utility" aria-label="Footer">
+          <a href="/contact/">Contact</a>
+          <a href="/cookies/">Cookies</a>
+          <a href="/terms/">Terms</a>
+          <a href="/privacy/">Privacy</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
