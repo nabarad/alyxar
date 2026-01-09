@@ -1,0 +1,77 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  role="img"
+  aria-label="Lumen rectangular orbits with cut frames (math-matched to ring system)"
+>
+  <defs>
+    <style>
+      :root { --ring: #3aa6b4; }
+      .ring { stroke: var(--ring); fill: none; stroke-linecap: butt; }
+    </style>
+  </defs>
+
+  <!--
+    Goal:
+    - Same stroke-widths as the circles.
+    - Same "cut density" as each ring, but on a RECTANGLE.
+
+    Math per ring i:
+      C_i = 2πr_i
+      P_i = 2(w_i + h_i)
+      scale s_i = P_i / C_i
+      dasharray_rect = dasharray_circle * s_i
+      dashoffset_rect = dashoffset_circle * s_i
+
+    Dimensions:
+    - Centered rectangles.
+    - Spacing between frames matches your ring spacing (Δr = 1.9) by using inset steps of 1.9.
+      Outer:  w4=21.8 h4=18.0 at (x4=1.1,y4=3.0)
+      Then inset 1.9 each side for next frames.
+  -->
+
+  <!-- Frame 1 (r=4.2)  s≈1.28840 -->
+  <rect
+    x="6.8" y="8.7" width="10.4" height="6.6"
+    rx="1.2"
+    class="ring"
+    stroke-width="0.35"
+    stroke-dasharray="7.09 2.06 4.12 2.71 6.18 1.80"
+    stroke-dashoffset="1.03"
+    opacity="0.95"
+  />
+
+  <!-- Frame 2 (r=6.1)  s≈1.28368 -->
+  <rect
+    x="4.9" y="6.8" width="14.2" height="10.4"
+    rx="1.6"
+    class="ring"
+    stroke-width="0.45"
+    stroke-dasharray="7.96 2.82 5.26 3.34 7.19 2.31"
+    stroke-dashoffset="5.26"
+    opacity="0.8"
+  />
+
+  <!-- Frame 3 (r=8.0)  s≈1.28120 -->
+  <rect
+    x="3.0" y="4.9" width="18.0" height="14.2"
+    rx="2.0"
+    class="ring"
+    stroke-width="0.55"
+    stroke-dasharray="9.10 3.59 6.15 3.97 8.20 2.82"
+    stroke-dashoffset="10.77"
+    opacity="0.65"
+  />
+
+  <!-- Frame 4 (r=9.9)  s≈1.27967 -->
+  <rect
+    x="1.1" y="3.0" width="21.8" height="18.0"
+    rx="2.4"
+    class="ring"
+    stroke-width="0.7"
+    stroke-dasharray="10.75 4.35 7.17 4.86 9.21 3.33"
+    stroke-dashoffset="17.54"
+    opacity="0.5"
+  />
+</svg>

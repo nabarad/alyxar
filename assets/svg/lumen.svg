@@ -1,0 +1,54 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 640 180"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Lumen</title>
+  <desc id="desc">Centered Lumen wordmark with axis beam behind</desc>
+  <style>
+    :root {
+      --ink: #cfe3e4;
+      --beam: #4caeb4;
+    }
+    .wordmark {
+      fill: var(--ink);
+      font-family: "Cinzel Decorative", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .beam {
+      fill: url(#beamGrad);
+    }
+  </style>
+  <defs>
+    <!-- Axis beam gradient -->
+    <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="20%" stop-color="var(--beam)" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="var(--beam)" stop-opacity="0.45"/>
+      <stop offset="80%" stop-color="var(--beam)" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <!-- AXIS BEAM (behind text) -->
+  <rect
+    x="120"
+    y="86"
+    width="400"
+    height="8"
+    rx="4"
+    class="beam"
+  />
+  <!-- WORDMARK (centered, above beam) -->
+  <text
+    x="320"
+    y="96"
+    text-anchor="middle"
+    font-size="64"
+    dominant-baseline="middle"
+    class="wordmark"
+  >
+    AEGEDIA
+  </text>
+</svg>

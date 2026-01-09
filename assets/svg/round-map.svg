@@ -1,0 +1,67 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  role="img"
+  aria-label="Lumen orbit with cut rings for logo placement"
+>
+
+  <defs>
+    <style>
+      :root {
+        --ring: #3aa6b4;
+        --core: #cfd6d9;
+      }
+
+      .ring {
+        stroke: var(--ring);
+        fill: none;
+        stroke-linecap: butt;
+      }
+    </style>
+  </defs>
+
+  <!-- ======================
+       ORBIT RINGS (WITH CUTS)
+       ====================== -->
+
+  <!-- Ring 1 -->
+  <circle
+    cx="12" cy="12" r="4.2"
+    class="ring"
+    stroke-width="0.35"
+    stroke-dasharray="5.5 1.6 3.2 2.1 4.8 1.4"
+    stroke-dashoffset="0"
+    opacity="0.95"
+  />
+
+  <!-- Ring 2 -->
+  <circle
+    cx="12" cy="12" r="6.1"
+    class="ring"
+    stroke-width="0.45"
+    stroke-dasharray="6.2 2.2 4.1 2.6 5.6 1.8"
+    stroke-dashoffset="3"
+    opacity="0.8"
+  />
+
+  <!-- Ring 3 -->
+  <circle
+    cx="12" cy="12" r="8.0"
+    class="ring"
+    stroke-width="0.55"
+    stroke-dasharray="7.1 2.8 4.8 3.1 6.4 2.2"
+    stroke-dashoffset="7"
+    opacity="0.65"
+  />
+
+  <!-- Ring 4 (outer / sponsor heavy) -->
+  <circle
+    cx="12" cy="12" r="9.9"
+    class="ring"
+    stroke-width="0.7"
+    stroke-dasharray="8.4 3.4 5.6 3.8 7.2 2.6"
+    stroke-dashoffset="12"
+    opacity="0.5"
+  />
+</svg>
