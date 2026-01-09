@@ -1,0 +1,191 @@
+/* =================================================
+   CREATORS PAGE
+   ================================================= */
+/* ---------- PAGE CENTERING ---------- */
+.page-center {
+  flex: 1;
+  display: flex;
+  align-items: center;      /* vertical centering */
+  justify-content: center;  /* horizontal safety */
+}
+.page-creators {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-block: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+/* =================================================
+   HEADER
+   ================================================= */
+.creators-header {
+  text-align: center;
+  max-width: 48rem;
+  margin-inline: auto;
+  margin-bottom: var(--space-4);
+}
+.creators-header h1 {
+  font-size: var(--fs-h1);
+  color: var(--text-muted);
+  margin: 0 0 var(--space-1) 0;
+}
+.creators-header p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+/* =================================================
+   MAIN GRID (BODY)
+   ================================================= */
+.creators-grid {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+/* LEFT COLUMN (LABELS) */
+.creators-grid .label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  padding-top: 0.2em;
+  padding-right: var(--space-2);
+}
+/* RIGHT COLUMN (CONTENT) */
+.creators-grid .content {
+  max-width: 40rem;
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--line-subtle);
+}
+.creators-grid p {
+  margin: 0;
+  line-height: 1.5;
+}
+.creators-grid ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
+.creators-grid li {
+  margin: 0.2em 0;
+}
+/* =================================================
+   FOOTER BAND (DIVIDER + ACCESS REQUEST)
+   ================================================= */
+/* Treat first paragraph as footer title */
+.creators-footer .creators-access .content > p:first-of-type {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-2) 0;
+  text-align: center;
+}
+.creators-footer {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+/* ACCESS REQUEST INSIDE FOOTER */
+.creators-footer .creators-access {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+.creators-footer .creators-access .content {
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--line-subtle);
+  max-width: 40rem;
+}
+/* FORM */
+.access-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+.form-row label {
+  font-size: 0.75rem;
+  color: var(--text-body);
+  font-size: var(--fs-body);
+}
+.form-row input,
+.form-row textarea {
+  padding: 0.4em 0;
+  border-bottom: 1px solid var(--line-subtle);
+  background: none;
+  color: var(--text-body);
+}
+.form-row input::placeholder,
+.form-row textarea::placeholder {
+  color: var(--text-muted);
+}
+.access-form button {
+  align-self: flex-start;
+  margin-top: var(--space-1);
+  border-bottom: 1px solid var(--line-subtle);
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+.access-form button:hover {
+  border-color: currentColor;
+}
+/* FOOTNOTE TEXT */
+.creators-footer p {
+  margin: 0;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  text-align: right;
+}
+/* =================================================
+   RESPONSIVE
+   ================================================= */
+/* TABLET */
+@container layout (max-width: 60rem) {
+  .creators-grid {
+    grid-template-columns: 11rem 1fr;
+  }
+  .creators-footer .creators-access {
+    grid-template-columns: 11rem 1fr;
+  }
+}
+/* MOBILE */
+@container layout (max-width: 44rem) {
+  .creators-header {
+    text-align: left;
+  }
+  .creators-grid {
+    grid-template-columns: 1fr;
+  }
+  .creators-grid .label {
+    margin-top: var(--space-2);
+    padding-right: 0;
+  }
+  .creators-grid .content {
+    padding-left: 0;
+    border-left: none;
+  }
+  .creators-footer .creators-access {
+    grid-template-columns: 1fr;
+  }
+  .creators-footer .creators-access .content {
+    padding-left: 0;
+    border-left: none;
+  }
+  .creators-footer p {
+    text-align: left;
+  }
+}
