@@ -1,0 +1,271 @@
+/* ======================
+   LUMEN – PAGE CONTAINER
+   ====================== */
+.lumen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-block: var(--space-4);
+}
+/* ======================
+   SHARED HEIGHT CONTRACT
+   ====================== */
+:root {
+  --axis-band-h: clamp(10.5rem, 22cqh, 14.5rem);
+}
+/* ======================
+   LUMEN – AXIS LAYOUT
+   ====================== */
+.lumen-axis {
+  display: grid;
+  width: 100%;
+  max-width: var(--max-page);
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    clamp(16rem, 70cqw, 32rem)
+    minmax(0, 1fr);
+  grid-template-rows:
+    var(--axis-band-h)
+    auto
+    var(--axis-band-h);
+  gap: var(--space-2);
+  grid-template-areas:
+    "topleft topleft topright"
+    "left    console  right"
+    "bottom  bottom   bottom";
+}
+/* ======================
+   PANEL BASE
+   ====================== */
+.axis-panel {
+  padding: var(--panel-pad);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+/* GRID AREAS */
+.axis-top-left  { grid-area: topleft; }
+.axis-top-right { grid-area: topright; }
+.axis-left      { grid-area: left; }
+.console        { grid-area: console; }
+.axis-right     { grid-area: right; }
+.axis-bottom    { grid-area: bottom; }
+/* ======================
+   TOP PANELS
+   ====================== */
+.axis-top-left,
+.axis-top-right {
+  justify-content: center;
+}
+.axis-top-left > *,
+.axis-top-right > * {
+  overflow: hidden;
+}
+/* ======================
+   RIGHT SPLIT
+   ====================== */
+.axis-right-split {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--space-2);
+  height: 100%;
+}
+/* ======================
+   CONSOLE
+   ====================== */
+.console {
+  position: relative;
+  width: clamp(16rem, 70cqw, 32rem);
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  --console-core: calc(50% * var(--density));
+  --console-primary: calc(25% * var(--density));
+}
+.console::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/svg/round-map.svg") center / 115% 115% no-repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+/* ======================
+   NODES
+   ====================== */
+.node {
+  all: unset;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.node img {
+  width: 100%;
+  height: auto;
+}
+.node.core {
+  width: var(--console-core);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.node.primary {
+  width: var(--console-primary);
+}
+.node.primary.p1 { top: 25%; left: 25%; transform: translateX(-50%); }
+.node.primary.p2 { top: 75%; right: 15%; transform: translateY(-50%); }
+
+/* ======================
+   VIDEO BAND (LOCKED)
+   ====================== */
+.axis-bottom {
+  padding: 0;
+  height: var(--axis-band-h);
+  min-height: var(--axis-band-h);
+  overflow: hidden;
+}
+/* ======================
+   VIDEO CAROUSEL
+   ====================== */
+.video-track {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  gap: var(--space-1);
+  padding-inline: var(--space-1);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.video-track::-webkit-scrollbar {
+  height: 6px;
+}
+.video-track::-webkit-scrollbar-thumb {
+  background: var(--line-subtle);
+}
+/* ======================
+   VIDEO CARD (PRIMARY)
+   ====================== */
+.video-card,
+.video-item {
+  flex: 0 0 auto;
+  height: calc(100% - var(--space-1));
+  aspect-ratio: 16 / 9;
+  scroll-snap-align: start;
+  border: 1px solid var(--line-subtle);
+  background: var(--surface-root);
+  overflow: hidden;
+}
+/* ======================
+   VIDEO CARD CONTENT
+   ====================== */
+.video-card a,
+.video-item a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.video-card img,
+.video-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+/* ======================
+   VIDEO META OVERLAY
+   ====================== */
+.video-meta {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: var(--space-1);
+  max-height: 50%;
+  overflow: hidden;
+  font-size: 0.75rem;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0)
+  );
+}
+.video-meta .video-title {
+  font-size: 0.9rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.video-meta .video-creator {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+/* ======================
+   COLLAPSE LOGIC
+   ====================== */
+@container layout (max-width: 62rem) {
+  .lumen-axis {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:
+      var(--axis-band-h)
+      auto
+      auto
+      var(--axis-band-h);
+    grid-template-areas:
+      "topleft topright"
+      "console console"
+      "left    right"
+      "bottom  bottom";
+  }
+  .console {
+    justify-self: center;
+  }
+  .video-track::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@container layout (max-width: 44rem) {
+  .lumen-axis {
+    grid-template-columns: 1fr;
+    grid-template-rows:
+      var(--axis-band-h)
+      auto
+      auto
+      auto
+      var(--axis-band-h);
+    grid-template-areas:
+      "topleft"
+      "topright"
+      "console"
+      "left"
+      "right"
+      "bottom";
+  }
+  .video-card,
+  .video-item {
+    aspect-ratio: 4 / 3;
+  }
+  .video-track::-webkit-scrollbar {
+    display: none;
+  }
+}
+/* ======================
+   CREATOR LINK
+   ====================== */
+.creator-link {
+  margin-top: var(--space-1);
+  width: fit-content;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--line-subtle);
+}
+.creator-link:hover {
+  border-color: currentColor;
+}

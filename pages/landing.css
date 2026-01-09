@@ -1,0 +1,75 @@
+.landing {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  container-type: inline-size;
+  container-name: landing;
+
+  position: relative;
+  overflow: hidden;
+}
+.landing-inner {
+  position: relative;
+  z-index: 1;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(
+    calc(var(--space-2) * 0.9),
+    4cqw,
+    var(--space-3)
+  );
+}
+.alyxar-chart {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  color: rgba(180, 205, 210, 0.35);
+  opacity: 1;
+
+  pointer-events: none;
+  z-index: 0;
+}
+/* ======================
+   LOGO
+   ====================== */
+.logo {
+  width: clamp(250px, 25cqw, 500px);
+  height: auto;
+}
+
+/* ======================
+   QUOTE
+   ====================== */
+.quote {
+  font-size: clamp(
+    calc(var(--fs-body) * 0.95),
+    1.6cqw,
+    var(--fs-body)
+  );
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  font-style: italic;
+}
+
+/* ======================
+   CTA (NAVIGATION)
+   ====================== */
+.cta {
+  margin-top: var(--space-2);
+  font-size: clamp(
+    var(--fs-body),
+    1.8cqw,
+    calc(var(--fs-body) * 1.05)
+  );
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--line-subtle);
+  padding-bottom: 2px;
+}
+
+.cta:hover {
+  color: var(--text-strong);
+}
