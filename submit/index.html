@@ -1,54 +1,70 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Submit · Alyxar</title>
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="color-scheme" content="dark">
-  <link rel="stylesheet" href="/core/tokens.css">
-  <link rel="stylesheet" href="./submit.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creator Submit</title>
+  <link rel="stylesheet" href="/assets/app.css" />
 </head>
 <body>
-  <main class="submit">
-    <header class="submit-head">
-      <h1>Submit a video link</h1>
-      <p class="who" id="who"></p>
-      <p class="hint">Accepted submissions appear according to system rules.</p>
-    </header>
-    <form class="submit-form" id="form" novalidate>
-      <!-- Token step (ONLY shown if no submit session exists) -->
-      <div class="row" id="token-row" hidden>
-        <label for="token">Submit token</label>
-        <input
-          id="token"
-          type="text"
-          autocomplete="off"
-          placeholder="Paste token once"
-        >
-      </div>
+  <div class="topbar">
+    <div class="h1">Creator Submit</div>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/lumen/">Lumen</a>
+      <a href="/latest-videos/">Latest</a>
+      <a href="/admin/">Admin</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h3>Login</h3>
+      <div class="meta">Use your creator token (issued by admin).</div>
+      <hr />
       <div class="row">
-        <label for="youtube_url">YouTube URL</label>
-        <input
-          id="youtube_url"
-          type="url"
-          placeholder="https://www.youtube.com/watch?v=…"
-          required
-        >
+        <input class="input" id="token" placeholder="alyxar_xxx token" />
+        <button class="primary" id="loginBtn">Login</button>
+        <button id="logoutBtn">Logout</button>
       </div>
+      <div class="sub" id="me"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3>Submit Video</h3>
+      <div class="meta">Only allowed tags can be used. Limit enforced by backend.</div>
+      <hr />
       <div class="row">
-        <label for="game_tag">Game tag</label>
-        <input
-          id="game_tag"
-          type="text"
-          placeholder="dragonheir"
-          required
-        >
+        <input class="input" id="youtubeUrl" placeholder="YouTube URL or video ID" />
+        <select id="gameTag"></select>
+        <button class="primary" id="submitBtn">Submit</button>
       </div>
-      <button type="submit">Submit</button>
-      <p class="status" id="status" aria-live="polite"></p>
-    </form>
-  </main>
-  <script src="./submit.js" defer></script>
+      <div class="sub" id="submitStatus"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="row space">
+        <h3 style="margin:0;">Your Videos</h3>
+        <button id="refreshBtn">Refresh</button>
+      </div>
+      <hr />
+      <table class="table" id="videoTbl">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>YouTube</th>
+            <th>Tag</th>
+            <th>Status</th>
+            <th>Expires</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <small>Deletes are immediate takedowns (Phase 3 republish hook). Additions appear on feeds when cron runs or admin triggers publish.</small>
+    </div>
+  </div>
+
+  <script type="module" src="/assets/submit.js"></script>
 </body>
 </html>

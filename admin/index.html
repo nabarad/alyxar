@@ -1,42 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin · Creators · Alyxar</title>
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="color-scheme" content="dark">
-  <link rel="stylesheet" href="/core/tokens.css">
-  <link rel="stylesheet" href="./admin-creators.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="/assets/app.css" />
 </head>
 <body>
-  <div class="layout">
-    <main class="admin">
-      <header class="admin-head">
-        <h1>Creators</h1>
-        <p>State control center. Changes propagate on cache expiry.</p>
-        <button id="refresh" type="button">Refresh</button>
-      </header>
-
-      <section class="admin-table-wrap" aria-label="Creators table">
-        <table class="admin-table" id="table">
-          <thead>
-            <tr>
-              <th>Creator</th>
-              <th>State</th>
-              <th>Active</th>
-              <th>Total</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </section>
-    </main>
+  <div class="topbar">
+    <div class="h1">Admin</div>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/lumen/">Lumen</a>
+      <a href="/latest-videos/">Latest</a>
+      <a href="/submit/">Submit</a>
+    </div>
   </div>
 
-  <script src="./admin-creators.js" defer></script>
+  <div class="container">
+    <div class="card">
+      <h3>Login</h3>
+      <div class="meta">Use ADMIN_KEY to establish a session cookie.</div>
+      <hr />
+      <div class="row">
+        <input class="input" id="adminKey" placeholder="ADMIN_KEY" />
+        <button class="primary" id="adminLoginBtn">Login</button>
+        <button id="adminLogoutBtn">Logout</button>
+        <button id="publishBtn">Publish Feeds</button>
+      </div>
+      <div class="sub" id="adminStatus"></div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="row space">
+        <h3 style="margin:0;">Creators</h3>
+        <button id="reloadCreators">Reload</button>
+      </div>
+      <hr />
+      <table class="table" id="creatorTbl">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name / Email</th>
+            <th>State</th>
+            <th>Actions</th>
+            <th>Allowed Tags</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <small>Issue token returns plaintext once. Copy it and send to creator securely.</small>
+    </div>
+  </div>
+
+  <script type="module" src="/assets/admin.js"></script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Latest Videos</title>
+  <link rel="stylesheet" href="/assets/app.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="h1">Latest Videos</div>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/lumen/">Lumen</a>
+      <a href="/submit/">Submit</a>
+      <a href="/admin/">Admin</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="sub" id="status">Loading…</p>
+    <table class="table" id="tbl">
+      <thead>
+        <tr>
+          <th>Video</th>
+          <th>Creator</th>
+          <th>Game</th>
+          <th>Submitted</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    import { loadManifest, loadFeed, toast, fmtIso } from "/assets/public.js";
+
+    const status = document.getElementById("status");
+    const tbody = document.querySelector("#tbl tbody");
+
+    try {
+      const manifest = await loadManifest();
+      const v = manifest.latest_version;
+      const feed = await loadFeed("latest", v);
+
+      status.textContent = `Version v${v} • Updated ${fmtIso(manifest.updated_at)} • Items ${feed.length}`;
+
+      tbody.innerHTML = feed.map(item => {
+        const url = `https://www.youtube.com/watch?v=${item.youtube_id}`;
+        return `
+          <tr>
+            <td><a href="${url}" target="_blank" rel="noreferrer">${item.youtube_id}</a></td>
+            <td>${item.creator}</td>
+            <td><span class="badge">${item.game}</span></td>
+            <td class="meta">${fmtIso(item.submitted_at)}</td>
+          </tr>
+        `;
+      }).join("");
+    } catch (e) {
+      status.textContent = "Feed unavailable.";
+      toast("Feed error", String(e?.message || e));
+    }
+  </script>
+</body>
+</html>
