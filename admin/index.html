@@ -32,6 +32,30 @@
     </div>
 
     <div class="card" style="margin-top:16px;">
+      <h3>Game Tags (Canonical)</h3>
+      <div class="meta">Create tags here once. Assign them to creators below. These tags drive /lumen filtering.</div>
+      <hr />
+      <div class="row">
+        <input class="input" id="newTag" placeholder="tag id (e.g. dragonheir)" />
+        <input class="input" id="newLabel" placeholder="label (optional, e.g. Dragonheir)" />
+        <button class="primary" id="addTagBtn">Add/Update</button>
+      </div>
+      <div class="sub" id="tagStatus"></div>
+      <hr />
+      <table class="table" id="tagTbl">
+        <thead>
+          <tr>
+            <th>Tag</th>
+            <th>Label</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <small>Delete is blocked if a tag is assigned to creators or used by any videos.</small>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
       <div class="row space">
         <h3 style="margin:0;">Creators</h3>
         <button id="reloadCreators">Reload</button>
