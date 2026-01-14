@@ -71,7 +71,6 @@
   function getSlotClass(el) {
     return Array.from(el.classList).find(c => /^p\d+$/.test(c)) || null;
   }
-
   // ----------------------
   // VIDEO SYSTEM (FEEDS)
   // ----------------------
@@ -176,3 +175,5 @@
   }
 
   loadVideos();
+
+})();
