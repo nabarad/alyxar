@@ -73,21 +73,54 @@
   }
 
   // ----------------------
-  // VIDEO SYSTEM (NEW)
+  // VIDEO SYSTEM (FEEDS)
   // ----------------------
   const track = document.querySelector(".video-track");
   let allVideos = [];
 
+  async function loadManifest() {
+    const res = await fetch("/feeds/manifest.json", { cache: "no-cache" });
+    if (!res.ok) return null;
+    try {
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  async function loadLumenFeed(version) {
+    const res = await fetch(`/feeds/lumen.v${version}.json`, { cache: "no-cache" });
+    if (!res.ok) return [];
+    try {
+      return await res.json();
+    } catch {
+      return [];
+    }
+  }
+
   async function loadVideos() {
     try {
-      const res = await fetch("/api/videos/lumen", {
-        headers: { "accept": "application/json" }
-      });
-      if (!res.ok) return;
-      allVideos = await res.json();
+      const manifest = await loadManifest();
+      if (!manifest || !Number.isFinite(Number(manifest.latest_version))) return;
+
+      const v = Number(manifest.latest_version);
+      const feed = await loadLumenFeed(v);
+
+      // Normalize to the shape this page needs.
+      // Phase 3 publisher emits: { youtube_id, thumbnail_url, creator, game, submitted_at }
+      allVideos = Array.isArray(feed)
+        ? feed.map(item => ({
+            youtube_id: item.youtube_id,
+            thumbnail_url: item.thumbnail_url,
+            game_tag: item.game,
+            creator_display_name: item.creator,
+            submitted_at: item.submitted_at
+          }))
+        : [];
+
       renderVideos("lumen");
     } catch {
-      // fail silently
+      // fail silently (consistent with existing behavior)
     }
   }
 
@@ -103,14 +136,18 @@
       const li = document.createElement("li");
       li.className = "video-item";
 
+      // We do not have a YouTube title yet (publisher doesn't fetch metadata).
+      // Use YouTube ID as a stable label.
+      const label = v.youtube_id;
+
       li.innerHTML = `
-        <a href="https://www.youtube.com/watch?v=${v.youtube_id}"
+        <a href="https://www.youtube.com/watch?v=${escapeAttr(v.youtube_id)}"
            target="_blank"
            rel="noopener">
-          <img src="${v.thumbnail_url}" alt="">
+          <img src="${escapeAttr(v.thumbnail_url)}" alt="">
           <div class="video-meta">
-            <span class="video-title">${v.title}</span>
-            <span class="video-creator">${v.creator_display_name}</span>
+            <span class="video-title">${escapeHtml(label)}</span>
+            <span class="video-creator">${escapeHtml(v.creator_display_name || "")}</span>
           </div>
         </a>
       `;
@@ -123,5 +160,19 @@
     renderVideos(e.detail);
   });
 
+  // Minimal escaping helpers for safety.
+  function escapeHtml(s) {
+    return String(s ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function escapeAttr(s) {
+    // Attribute-safe encoding (keeps URLs/ids safe in quotes)
+    return escapeHtml(s).replaceAll("`", "&#96;");
+  }
+
   loadVideos();
-})();
